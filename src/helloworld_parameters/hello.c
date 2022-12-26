@@ -2,13 +2,18 @@
 #include <linux/init.h>   // init&exit相关宏
 #include <linux/kernel.h>
  
+static int num = 5; 
+module_param(num,int,S_IRUGO);
+
 static int __init hello_init(void)
 {
-      printk(KERN_WARNING "hello world.\n");
+      printk(KERN_WARNING "hello world insert.\n");
+      pr_info("parameter num = %d\n",num);
       return 0;
 }
 static void __exit hello_exit(void)
-{
+{     
+      pr_info("exit");
       printk(KERN_WARNING "hello exit!\n");
 }
  
